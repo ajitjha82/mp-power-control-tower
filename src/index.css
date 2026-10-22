@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens — MP Power control-room visual system.
+ * All colours are HSL triplets consumed via hsl(var(--token)).
+ * Charts use --chart-1..8 so they re-theme automatically.
+ */
+@layer base {
+  :root {
+    --background: 216 33% 97%;
+    --foreground: 218 39% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 218 39% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 39% 14%;
+    --border: 216 22% 88%;
+    --input: 216 22% 84%;
+    --ring: 211 90% 45%;
+
+    --primary: 213 64% 22%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 211 90% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 214 40% 94%;
+    --accent-foreground: 213 64% 22%;
+    --muted: 216 28% 94%;
+    --muted-foreground: 217 15% 42%;
+
+    --success: 158 72% 30%;
+    --success-foreground: 0 0% 100%;
+    --success-soft: 152 60% 93%;
+    --warning: 33 92% 40%;
+    --warning-foreground: 0 0% 100%;
+    --warning-soft: 43 96% 91%;
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-soft: 0 86% 95%;
+    --info: 199 89% 36%;
+    --info-foreground: 0 0% 100%;
+    --info-soft: 199 90% 93%;
+
+    --sidebar: 214 58% 13%;
+    --sidebar-foreground: 213 30% 88%;
+    --sidebar-muted: 214 22% 62%;
+    --sidebar-active: 211 75% 30%;
+    --sidebar-border: 214 40% 20%;
+
+    --chart-1: 211 85% 42%;
+    --chart-2: 174 70% 34%;
+    --chart-3: 33 92% 48%;
+    --chart-4: 262 52% 52%;
+    --chart-5: 340 65% 50%;
+    --chart-6: 199 80% 52%;
+    --chart-7: 88 45% 42%;
+    --chart-8: 215 16% 58%;
+    --chart-grid: 216 22% 90%;
+  }
+
+  .dark {
+    --background: 220 39% 8%;
+    --foreground: 214 32% 91%;
+    --card: 219 36% 11%;
+    --card-foreground: 214 32% 91%;
+    --popover: 219 36% 12%;
+    --popover-foreground: 214 32% 91%;
+    --border: 218 28% 20%;
+    --input: 218 26% 24%;
+    --ring: 205 90% 58%;
+
+    --primary: 205 90% 62%;
+    --primary-foreground: 220 39% 8%;
+    --secondary: 211 90% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 218 32% 17%;
+    --accent-foreground: 214 32% 91%;
+    --muted: 218 30% 15%;
+    --muted-foreground: 215 18% 64%;
+
+    --success: 152 58% 48%;
+    --success-foreground: 220 39% 8%;
+    --success-soft: 156 45% 14%;
+    --warning: 38 92% 56%;
+    --warning-foreground: 220 39% 8%;
+    --warning-soft: 36 60% 14%;
+    --destructive: 0 80% 64%;
+    --destructive-foreground: 220 39% 8%;
+    --destructive-soft: 0 50% 16%;
+    --info: 195 85% 56%;
+    --info-foreground: 220 39% 8%;
+    --info-soft: 199 55% 15%;
+
+    --sidebar: 221 42% 6%;
+    --sidebar-foreground: 214 30% 86%;
+    --sidebar-muted: 215 18% 56%;
+    --sidebar-active: 211 60% 24%;
+    --sidebar-border: 218 30% 14%;
+
+    --chart-1: 205 90% 60%;
+    --chart-2: 170 60% 48%;
+    --chart-3: 38 92% 58%;
+    --chart-4: 262 70% 72%;
+    --chart-5: 340 75% 66%;
+    --chart-6: 190 80% 62%;
+    --chart-7: 88 50% 56%;
+    --chart-8: 215 15% 60%;
+    --chart-grid: 218 28% 18%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv11', 'ss01', 'tnum';
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-1 ring-offset-background;
+  }
+}
+
+@layer components {
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .section-title {
+    @apply text-sm font-semibold tracking-tight text-foreground;
+  }
+  .eyebrow {
+    @apply text-2xs font-semibold uppercase tracking-[0.08em] text-muted-foreground;
+  }
+}
+
+.recharts-cartesian-grid line {
+  stroke: hsl(var(--chart-grid));
+}
+.recharts-text {
+  fill: hsl(var(--muted-foreground));
+  font-size: 11px;
+}
+.recharts-legend-item-text {
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 12px;
+}
+.recharts-surface:focus,
+.recharts-wrapper:focus,
+.recharts-sector:focus,
+.recharts-rectangle:focus {
+  outline: none;
+}
